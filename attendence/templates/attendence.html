@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Attendance</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(27, 27, 27);
+        color: white;
+      }
+
+      main {
+        max-width: 1000px;
+        width: 98vw;
+        padding: 10px 20px;
+        margin: 10px auto;
+      }
+
+      section {
+        background-color: rgb(17, 17, 17);
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      h1 {
+        font-size: 26px;
+        padding: 20px;
+      }
+
+      .display-all {
+        display: flex;
+        justify-content: space-between;
+      }
+
+      button {
+        padding: 10px 25px;
+        outline: none;
+        border: none;
+        color: white;
+        font-weight: 700;
+        font-size: 20px;
+        background-color: rgb(29, 123, 35);
+        cursor: pointer;
+      }
+
+      .search-user {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-bottom: 40px;
+      }
+
+      input[name="search"] {
+        padding: 10px 20px;
+        outline: none;
+        background-color: rgb(117, 172, 148);
+        color: white;
+        border: none;
+        font-size: 20px;
+        max-width: 400px;
+        width: 80vw;
+      }
+
+      input[name="search"]::placeholder {
+        color: white;
+      }
+
+      input[name="search"]:focus {
+        outline: 2px solid rgb(116, 208, 122);
+      }
+
+      .content {
+        text-align: center;
+        max-width: 90vw;
+        word-break: break-all;
+      }
+
+      @media (max-width: 500px) {
+        .display-all {
+          flex-direction: column;
+        }
+      }
+
+      @media (max-width: 655px) {
+        .search-user {
+          flex-direction: column;
+          align-items: flex-start;
+        }
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      thead tr {
+        border-bottom: 2px solid rgb(169, 169, 169);
+      }
+
+      th {
+        font-size: 20px;
+      }
+
+      td,
+      th {
+        padding: 20px 20px;
+        word-break: keep-all;
+      }
+
+      td {
+        border-bottom: 0.8px solid rgb(74, 74, 74);
+      }
+
+      th {
+        text-align: start;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <section>
+        <form
+          class="display-all"
+          action="/attendence/display_info"
+          method="get"
+        >
+          <h1>Attendance Sheet</h1>
+          <button>Display All</button>
+        </form>
+      </section>
+      <section>
+        <form class="search-user" action="/attendence/search_user" method="get">
+          <input name="search" type="text" placeholder="Search" />
+          <button>Search</button>
+        </form>
+        <div class="content">
+          <!-- Content here -->
+          <table>
+            <thead>
+              <tr>
+                <th>DataBase No.</th>
+                <th>Name</th>
+                <th>Semester</th>
+                <th>Phone no</th>
+                <th>Email</th>
+                <th>Attendance</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                {% for obj in q %} {% for info in obj %}
+                <td>{{info}}</td>
+                {% endfor %} {% endfor %}
+              </tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>

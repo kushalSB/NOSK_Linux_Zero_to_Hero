@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Search List</title>
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+        background-color: rgb(27, 27, 27);
+        color: white;
+      }
+
+      main {
+        background-color: rgb(17, 17, 17);
+        max-width: 1000px;
+        width: 98vw;
+        padding: 10px 20px;
+        margin: 10px auto;
+      }
+
+      section {
+        width: 100%;
+        overflow-x: scroll;
+        -ms-overflow-style: none;
+        scrollbar-width: none;
+      }
+
+      section::-webkit-scrollbar {
+        display: none;
+      }
+
+      table {
+        width: 100%;
+        border-collapse: collapse;
+      }
+
+      thead tr {
+        border-bottom: 2px solid rgb(169, 169, 169);
+      }
+
+      th {
+        font-size: 20px;
+      }
+
+      td,
+      th {
+        padding: 20px 20px;
+        word-break: keep-all;
+      }
+
+      td {
+        border-bottom: 0.8px solid rgb(74, 74, 74);
+      }
+
+      th {
+        text-align: start;
+      }
+
+      h1 {
+        background-color: rgb(35, 35, 35);
+        font-size: 26px;
+        padding: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <main>
+      <h1>Search Results</h1>
+      <section>
+        <table>
+          <thead>
+            <tr>
+              <!-- <th>SN</th> -->
+              <th>Name</th>
+              <th>Semester</th>
+              <th>Phone no</th>
+              <th>Email</th>
+              <th>Attendance</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for user in object_list %}
+            <tr>
+              <!-- <td>{{index}}</td> -->
+              <td>{{user.name}}</td>
+              <td>{{user.semester}}</td>
+              <td>{{user.phone}}</td>
+              <td>{{user.email}}</td>
+              <td>{{user.days_present}}</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </section>
+    </main>
+  </body>
+</html>
